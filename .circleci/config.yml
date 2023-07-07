@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test:
+  check_quality:
     docker:
       - image: cimg/node:16.10.0
     steps:
@@ -17,6 +17,6 @@ jobs:
           command: yarn test
 
 workflows:
-  test-and-build:
+  build_and_deploy:
     jobs:
-      - test
+      - check_quality
