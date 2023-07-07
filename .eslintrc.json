@@ -1,0 +1,88 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "plugins": ["react", "functional"],
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "prettier",
+    "plugin:functional/no-mutations"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["**/tsconfig.json", "**/tsconfig.node.json"]
+  },
+  "rules": {
+    "semi": "off",
+    "@typescript-eslint/semi": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "require-await": "warn",
+    "react/jsx-curly-brace-presence": 0,
+    "max-classes-per-file": 0,
+    "no-useless-escape": 0,
+    "no-useless-concat": 0,
+    "consistent-return": 0,
+    "import/named": 2,
+    "import/extensions": 0,
+    "import/no-cycle": 0,
+    "import/prefer-default-export": 0,
+    "import/first": ["error"],
+    "jsx-a11y/anchor-has-content": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/control-has-associated-label": 0,
+    "no-console": 2,
+    "no-var": 2,
+    "prefer-const": 2,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/destructuring-assignment": 0,
+    "react/button-has-type": 0,
+    "react/static-property-placement": 0,
+    "react/sort-comp": 0,
+    "react/no-array-index-key": 0,
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "react/state-in-constructor": 0,
+    "react/no-access-state-in-setstate": 0,
+    "react/jsx-no-target-blank": 0,
+    "camelcase": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/label-has-for": 0,
+    "no-alert": 0,
+    "react/no-danger": 0,
+    "functional/prefer-immutable-types": 0,
+    "functional/type-declaration-immutability": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.test.*"],
+      "rules": {
+        "functional/immutable-data": 0,
+        "functional/no-let": 0
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "functional/type-declaration-immutability": 0
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
