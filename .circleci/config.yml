@@ -1,14 +1,22 @@
 version: 2.1
 
 jobs:
-  test:
+  check_quality:
     docker:
       - image: cimg/node:16.10.0
     steps:
       - checkout
-      - run: node --version
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Run linter
+          command: yarn lint
+      - run:
+          name: Run tests
+          command: yarn test
 
 workflows:
-  test_deploy:
+  build_and_deploy:
     jobs:
-      - test
+      - check_quality
