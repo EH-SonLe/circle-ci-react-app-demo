@@ -1,5 +1,5 @@
 import { describe, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import App from '../App.tsx';
 
@@ -8,5 +8,14 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.queryByText('Vite + React')).toBeInTheDocument();
+  });
+
+  it('should change value when clicking on button', async () => {
+    render(<App />);
+
+    const count = screen.getByText(/count/i);
+    fireEvent.click(count);
+
+    expect(await screen.findByText(/count is 1/i)).toBeInTheDocument();
   });
 });
