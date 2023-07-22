@@ -1,11 +1,13 @@
 version: 2.1
 
-jobs:
-  check_quality:
-    docker:
-      - image: cimg/node:16.10.0
+defaults: &defaults
+  docker:
+    - image: cimg/node:16.10.0
+
+commands:
+  common_steps:
+    description: 'Common steps'
     steps:
-      - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -25,29 +27,18 @@ jobs:
           name: Run tests
           command: yarn test
 
-  build:
-    docker:
-      - image: cimg/node:16.10.0
+jobs:
+  check_quality:
+    <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install dependencies
-          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - run:
-          name: Run linter
-          command: yarn lint
-      - run:
-          name: Run tests
-          command: yarn test
+      - common_steps
+
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - common_steps
       - run:
           name: Build
           command: yarn build
