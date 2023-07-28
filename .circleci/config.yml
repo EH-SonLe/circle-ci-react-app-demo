@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Build
           command: yarn build
-      - run:
+      - save_cache:
           name: Save cache build
           key: app-build-cache-{{ .Branch }}
           paths:
